@@ -1,0 +1,35 @@
+ CREATE TABLE account (
+  accountNO int primary key AUTO_INCREMENT,
+  holderName varchar(100) NOT NULL,
+  balance double(12,2),
+  email varchar(100),
+  UNIQUE KEY email (email),
+  CONSTRAINT CHECK (balance > 999)
+);
+
+CREATE TABLE login (
+  accNo int NOT NULL,
+  userId varchar(20) primary key,
+  password varchar(20),
+  Foreign Key (accNo)
+  REFERENCES account (accountNO)
+);
+
+ CREATE TABLE trans_history (
+  accNo int not null,
+	transactionType varchar(20) NOT NULL,
+  amount int,
+  receiver int,
+  trasactionDuration varchar(50),
+  FOREIGN KEY (accNo) REFERENCES account (accountNO)
+);
+
+insert into account(holderName,balance,email)
+values("Darshan Soni",50000,"darshan@gmail.com"),
+("Rohit", 60000,"rohit@gmail.com"),
+("Kalpesh",30000,"kalpesh@gmail.com");
+
+insert into login values(1,"darshan","darsh123"),
+(2,"rohit","rohit123"),
+(3,"kalpesh","kalpesh123");
+
